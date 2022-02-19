@@ -157,6 +157,7 @@ if(!(car.getLocation().isEmpty()) && !(location.getSelectedItem().toString().isE
 if(car.getLocation().trim().equalsIgnoreCase(location.getSelectedItem().toString().trim())){
 //carsInLocation.add(car);
 model.insertRow(model.getRowCount(), new Object[]{car.getEngineNo(),car.getLicenseplate(),car.getManufacturer(),car.getNumberOfSeat(),car.getModelNumber(),car.getUberSerialNumber(),car.getLocation()});
+break;
 }
 //carsInLocation
 }

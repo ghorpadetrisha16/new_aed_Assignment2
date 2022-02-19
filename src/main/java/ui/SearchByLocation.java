@@ -43,13 +43,16 @@ public void populateArrayList() {
         }
     }
 
-public void insertDataInTable(){
-model.setRowCount(0);
-for(UberCar car: uberCars){
-if(car.getLocation().trim().equalsIgnoreCase(location.getSelectedItem().toString().trim()))
-model.insertRow(model.getRowCount(), new Object[]{car.getEngineNo(),car.getLicenseplate(),car.getManufacturer(),car.getNumberOfSeat(),car.getModelNumber(),car.getUberSerialNumber(),car.getLocation()});
-}
-}
+    public void insertDataInTable() {
+        model.setRowCount(0);
+        for (UberCar car : uberCars) {
+            if (car.getAvailability()) {
+                if (car.getLocation().trim().equalsIgnoreCase(location.getSelectedItem().toString().trim())) {
+                    model.insertRow(model.getRowCount(), new Object[]{car.getEngineNo(), car.getLicenseplate(), car.getManufacturer(), car.getNumberOfSeat(), car.getModelNumber(), car.getUberSerialNumber(), car.getLocation()});
+                }
+            }
+        }
+    }
     /**
      * Creates new form SearchByLocation
      */
@@ -76,6 +79,7 @@ populateArrayList();
         manageTable = new javax.swing.JTable();
         location = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
@@ -116,6 +120,8 @@ populateArrayList();
             }
         });
 
+        jLabel2.setText("List of all available cars in selected location :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,14 +134,16 @@ populateArrayList();
                 .addGap(50, 50, 50)
                 .addComponent(jButton1)
                 .addGap(478, 478, 478))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1053, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(166, 166, 166))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1053, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,9 +153,11 @@ populateArrayList();
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(location, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                .addGap(37, 37, 37)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
+                .addGap(46, 46, 46)
                 .addComponent(jButton2)
                 .addContainerGap(98, Short.MAX_VALUE))
         );
@@ -204,6 +214,7 @@ populateArrayList();
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> location;
     private javax.swing.JTable manageTable;
